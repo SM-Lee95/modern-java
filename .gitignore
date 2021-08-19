@@ -9,6 +9,8 @@
 *.settings
 *.classpath
 
+bin/
+
 # Log file
 *.log
 
