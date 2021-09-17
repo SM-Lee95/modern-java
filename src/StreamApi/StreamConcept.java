@@ -15,13 +15,15 @@ public class StreamConcept {
 		for (int i = 0; i < name.length; i++) {
 			menuList.add(new menu(i, name[i]));
 		}
-		// filter >> 특정 요소 필터링
-		// map >> 한 요소를 다른 요소로 변환하거나 정보를 추출
-		// limit >> 정해진 개수 이상의 요소가 스트림에 저장되지 못하게 스트림 크기를 축소(truncate)
-		// collect >> 스트림을 다른 형식으로 변환
 		menuList.stream()
+				// filter >> 특정 요소 필터링 >> 인수 : Predicate<T> >> 디스크럽터 : T -> boolean
 				.filter(d -> d.getCal() < 2)
+				// map >> 한 요소를 다른 요소로 변환하거나 정보를 추출 >> 인수 : Function<T,R> >> 디스크럽터 : T -> R
+				// limit >> 정해진 개수 이상의 요소가 스트림에 저장되지 못하게 스트림 크기를 축소(truncate)
+				// sorted >> 정렬 연산 >> 인수 : Comparator<T,R> >> 디스크럽터 : T -> R
+				.sorted((g,k) -> k.getCal() - g.getCal())
 				.map(menu::getName)
+				// collect >> 스트림을 다른 형식으로 변환
 				.collect(Collectors.toList())
 				.forEach(System.out::println);
 
